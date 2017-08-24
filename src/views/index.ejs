@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <!-- BOOTSTRAP CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <div class="container">
+
+      <h1><%= title %></h1>
+
+      <!-- Form  -->
+      <form action="/add" method="post">
+        <div class="form-inline">
+          <legend>
+            Add a Tax
+          </legend>
+          <div class="form-group">
+            <input id="title" class="form-control" type="text" name="title">
+          </div>
+           <div class="form-group mx-sm-3">
+            <textarea class="form-control" name="description" rows="1" cols="80"
+              placeholder="Add a Description"
+            ></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">
+            Add
+          </button>
+        </div>
+      </form>
+
+      <hr>
+      <!-- List -->
+      <table class="table table-bordered table-hover">
+        <thead class="thead-inverse">
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < tasks.length; i++) { %>
+            <tr>
+              <td><%= i + 1%></td>
+              <td><strong><%= tasks[i].title %></strong></td>
+              <td><%= tasks[i].description %></td>
+              <td>
+                <a
+                  class="<%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
+                  href="/turn/<%= tasks[i]._id %>">Done</a>
+                <a href="/delete/<%= tasks[i]._id %>"
+                  class="btn btn-danger">
+                  Delete
+                </a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      document.getElementById('title').focus();
+    </script>
+  </body>
+</html>
