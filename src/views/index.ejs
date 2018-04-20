@@ -1,43 +1,35 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title><%= title %></title>
-    <!-- BOOTSTRAP CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  </head>
-  <body>
+<% include partials/_header %>
 
-    <div class="container">
+<div class="container">
 
-      <h1><%= title %></h1>
-
-      <!-- Form  -->
-      <form action="/add" method="post">
-        <div class="form-inline">
-          <legend>
-            Add a Tax
-          </legend>
-          <div class="form-group">
-            <input id="title" class="form-control" type="text" name="title">
-          </div>
-           <div class="form-group mx-sm-3">
-            <textarea class="form-control" name="description" rows="1" cols="80"
-              placeholder="Add a Description"
-            ></textarea>
-          </div>
-          <button class="btn btn-primary" type="submit">
-            Add
-          </button>
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <form action="/add" method="post">
+            <div class="form-group">
+              <input class="form-control" type="text" name="title" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="description" cols="80"
+                placeholder="Add a Description"
+                ></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">
+              Add
+            </button>
+          </form>
         </div>
-      </form>
+      </div>
+    </div>
 
-      <hr>
-      <!-- List -->
+    <!-- LIST -->
+    <div class="col-md-7">
       <table class="table table-bordered table-hover">
-        <thead class="thead-inverse">
+        <thead>
           <tr>
-            <th>#</th>
+            <th>N°</th>
             <th>Title</th>
             <th>Description</th>
             <th>Operations</th>
@@ -57,15 +49,17 @@
                   class="btn btn-danger">
                   Delete
                 </a>
+                <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">
+                  Edit
+                </a>
               </td>
             </tr>
           <% } %>
         </tbody>
       </table>
-    </div>
 
-    <script>
-      document.getElementById('title').focus();
-    </script>
-  </body>
-</html>
+    </div>
+  </div>
+
+</div>
+
