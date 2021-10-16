@@ -1,46 +1,54 @@
-const express = require('express');
-const router = express.Router();
-const Task = require('../model/task');
+import { Router } from "express";
+import Task from "../model/Task";
 
-router.get('/', async (req, res) => {
-  const tasks = await Task.find();
-  res.render('index', {
-    tasks
-  });
+const router = Router();
+
+// Render all tasks
+router.get("/", async (req, res) => {
+  try {
+    const tasks = await Task.find().lean();
+    res.render("index", {
+      tasks,
+    });
+  } catch (error) {
+    console.log({ error });
+    return res.render("error", { errorMessage: error.message });
+  }
 });
 
-router.post('/add', async (req, res, next) => {
-  const task = new Task(req.body);
-  await task.save();
-  res.redirect('/');
+router.post("/tasks/add", async (req, res, next) => {
+  try {
+    const task = new Task(req.body);
+    await task.save();
+    res.redirect("/");
+  } catch (error) {
+    return res.render("error", { errorMessage: error.message });
+  }
 });
 
-router.get('/turn/:id', async (req, res, next) => {
+router.get("/tasks/:id/toggleDone", async (req, res, next) => {
   let { id } = req.params;
   const task = await Task.findById(id);
-  task.status = !task.status;
+  task.done = !task.done;
   await task.save();
-  res.redirect('/');
+  res.redirect("/");
 });
 
-
-router.get('/edit/:id', async (req, res, next) => {
-  const task = await Task.findById(req.params.id);
-  console.log(task)
-  res.render('edit', { task });
+router.get("/tasks/:id/edit", async (req, res, next) => {
+  const task = await Task.findById(req.params.id).lean();
+  res.render("edit", { task });
 });
 
-router.post('/edit/:id', async (req, res, next) => {
+router.post("/tasks/:id/edit", async (req, res, next) => {
   const { id } = req.params;
-  await Task.update({_id: id}, req.body);
-  res.redirect('/');
+  await Task.updateOne({ _id: id }, req.body);
+  res.redirect("/");
 });
 
-router.get('/delete/:id', async (req, res, next) => {
+router.get("/tasks/:id/delete", async (req, res, next) => {
   let { id } = req.params;
-  await Task.remove({_id: id});
-  res.redirect('/');
+  await Task.remove({ _id: id });
+  res.redirect("/");
 });
 
-
-module.exports = router;
+export default router;
