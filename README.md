@@ -8,9 +8,17 @@ This is a Multi page application using nodejs mongodb and handlebars
 
 * You need mongodb installed and running on your computer. or alternatively you can use docker
 
-## Installation
+### Installation with docker-compose (Recommended)
 
+```bash
+git clone https://github.com/FaztWeb/express-mongodb-crud
+cd express-mongodb-crud
+docker-compose up
 ```
+
+### Installation (Manually)
+
+```bash
 git clone https://github.com/FaztWeb/express-mongodb-crud
 cd express-mongodb-crud
 npm install

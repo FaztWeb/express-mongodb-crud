@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  web:
+    container_name: tasksapp
+    restart: always
+    build: .
+    ports:
+      - 3000:3000
+    links:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+  mongo:
+    container_name: tasksdb
+    image: mongo
+    ports:
+      - "27017:27017"
+    logging:
+      driver: none
