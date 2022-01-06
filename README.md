@@ -28,4 +28,9 @@ npm start
 
 Now you can visit: <a target="_blank" href="http://localhost:3000">http://localhost:3000</a>
 
+### Todo
 
+* [ ] add search input to find tasks
+* [ ] add usert authentication and authorization
+* [ ] add docker configuration for production
+* [ ] add github actions setup 

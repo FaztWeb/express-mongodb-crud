@@ -5,19 +5,19 @@
   "main": "index.js",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^5.3.4",
-    "mongoose": "^6.0.11",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "mongoose": "^6.1.5",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.15.7",
-    "@babel/core": "^7.15.8",
-    "@babel/node": "^7.15.8",
-    "@babel/plugin-transform-runtime": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
     "ncp": "^2.0.0",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.15"
   },
   "scripts": {
     "dev": "nodemon ./src --exec babel-node",
