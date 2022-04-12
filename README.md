@@ -33,4 +33,8 @@ Now you can visit: <a target="_blank" href="http://localhost:3000">http://localh
 * [ ] add search input to find tasks
 * [ ] add usert authentication and authorization
 * [ ] add docker configuration for production
-* [ ] add github actions setup 
+* [ ] add github actions setup
+* [ ] add connect-mongo to store session in db
+* [ ] remove babel with es modules
+* [ ] add error handling
+* [ ] add a validation library for user input
